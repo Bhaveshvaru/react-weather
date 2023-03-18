@@ -41,10 +41,11 @@ const Weather = ({ forecastData, locationData }) => {
           <h1>{getDayfromDate()}</h1>
           <img src={getimg()} alt='condition' />
           <h1>{forecastData[0].day.condition.text}</h1>
+          <h1>{`${forecastData[0].day.avgtemp_c}C`}</h1>
+
+          
         </>
-      ) : (
-        <h1>Search Country</h1>
-      )}
+      ) : null}
     </div>
   )
 }

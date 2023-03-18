@@ -11,9 +11,11 @@ const Search = () => {
   const [searchField, setSearchField] = useState('')
   const [location, setLocation] = useState([])
   const [forecast, setForecast] = useState([])
+  const [loader, setLoader] = useState(false)
 
   // search handler function
   const searchHandler = () => {
+    setLoader(true)
     const options = {
       method: 'GET',
       url: 'https://weatherapi-com.p.rapidapi.com/history.json',
@@ -30,6 +32,7 @@ const Search = () => {
         setLocation(response.data.location)
         setForecast(response.data.forecast.forecastday)
         setSearchField('')
+        setLoader(false)
       })
       .catch(function (error) {
         if (error.code === 'ERR_BAD_REQUEST') {
@@ -51,9 +54,13 @@ const Search = () => {
         />
         <SearchIcon className='icon' onClick={searchHandler} />
       </div>
-      {setLocation.length !== 0 ? (
+      {loader ? (
+        <h1>Loading</h1>
+      ) : location.length !== 0 ? (
         <Weather forecastData={forecast} locationData={location} />
-      ) : null}
+      ) : (
+        <h1>Search Country or city </h1>
+      )}
     </>
   )
 }
