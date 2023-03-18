@@ -1,9 +1,9 @@
-import Weather from './components/Weather.jsx'
-
+import Search from './components/search/Search'
+import React from 'react'
 function App() {
   return (
     <div>
-      <Weather />
+      <Search />
     </div>
   )
 }
