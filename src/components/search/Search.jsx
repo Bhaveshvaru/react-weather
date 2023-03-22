@@ -74,7 +74,7 @@ const Search = () => {
       <div className='search'>
         <TextField
           id='outlined-basic'
-          label='Search Country'
+          label='Search Country / City'
           variant='outlined'
           value={searchField}
           onChange={(e) => setSearchField(e.target.value)}
@@ -100,7 +100,11 @@ const Search = () => {
           locationData={location}
         />
       ) : (
-        <h1>Search Country or city </h1>
+        <img
+          className='img_back'
+          src='https://images.unsplash.com/photo-1561484930-998b6a7b22e8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80'
+          alt='wallpaper'
+        />
       )}
     </>
   )

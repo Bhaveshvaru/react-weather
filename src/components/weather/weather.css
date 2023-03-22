@@ -75,3 +75,9 @@
 .carousel {
   margin-top: 5.5rem;
 }
+
+@media screen and (max-width: 992px) {
+  .main_items {
+    width: 80%;
+  }
+}

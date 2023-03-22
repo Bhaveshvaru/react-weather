@@ -35,6 +35,10 @@ const Weather = ({ image, forecastData, locationData }) => {
     0: { items: 1 },
     568: { items: 2 },
     1024: { items: 3 },
+    700: { items: 2 },
+    500: { items: 2 },
+    400: { items: 2 },
+    300: { items: 2 },
   }
 
   const items = forecastData[0].hour.map((item, id) => (
