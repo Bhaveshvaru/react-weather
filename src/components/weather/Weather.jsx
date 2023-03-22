@@ -4,7 +4,6 @@ import 'react-alice-carousel/lib/alice-carousel.css'
 import './weather.css'
 import Moment from 'moment'
 const Weather = ({ image, forecastData, locationData }) => {
-  console.log(image)
   const getimg = () => {
     let img = forecastData[0].day.condition.icon.substring(
       2,

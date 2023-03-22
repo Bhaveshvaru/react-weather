@@ -6,6 +6,7 @@ import './search.css'
 import Weather from '../weather/Weather.jsx'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { Blocks } from 'react-loader-spinner'
 
 const Search = () => {
   const date = new Date()
@@ -82,7 +83,16 @@ const Search = () => {
         <ToastContainer />
       </div>
       {loader ? (
-        <h1>Loading</h1>
+        <div className='loader'>
+          <Blocks
+            visible={true}
+            height='80'
+            width='80'
+            ariaLabel='blocks-loading'
+            wrapperStyle={{}}
+            wrapperClass='blocks-wrapper'
+          />
+        </div>
       ) : location.length !== 0 ? (
         <Weather
           image={image}
