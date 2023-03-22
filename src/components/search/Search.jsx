@@ -4,6 +4,8 @@ import SearchIcon from '@mui/icons-material/Search'
 import { TextField } from '@mui/material'
 import './search.css'
 import Weather from '../weather/Weather.jsx'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const Search = () => {
   const date = new Date()
@@ -23,6 +25,9 @@ const Search = () => {
       )
       .then((res) => {
         setImage(res.data.results[0].urls.regular)
+      })
+      .catch((err) => {
+        setLoader(false)
       })
 
     const options = {
@@ -44,12 +49,24 @@ const Search = () => {
         setLoader(false)
       })
       .catch(function (error) {
+        setLoader(false)
+
         if (error.code === 'ERR_BAD_REQUEST') {
-          window.alert('No Country Found! Try again...')
+          toast.error('No Country or City Found! Try again...', {
+            position: 'top-right',
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: 'colored',
+          })
           setSearchField('')
         }
       })
   }
+
   useEffect(() => {}, [])
   return (
     <>
@@ -62,6 +79,7 @@ const Search = () => {
           onChange={(e) => setSearchField(e.target.value)}
         />
         <SearchIcon className='icon' onClick={searchHandler} />
+        <ToastContainer />
       </div>
       {loader ? (
         <h1>Loading</h1>

@@ -79,7 +79,7 @@ const Weather = ({ image, forecastData, locationData }) => {
         </div>
         <div className='hour_card'>
           {locationData.length !== 0 && forecastData.length !== 0 ? (
-            <>
+            <div className='carousel'>
               <AliceCarousel
                 disableButtonsControls
                 disableDotsControls
@@ -88,7 +88,7 @@ const Weather = ({ image, forecastData, locationData }) => {
                 items={items}
                 responsive={responsive}
               />
-            </>
+            </div>
           ) : null}
         </div>
       </div>
