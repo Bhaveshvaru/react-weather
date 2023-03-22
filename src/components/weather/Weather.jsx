@@ -32,39 +32,45 @@ const Weather = ({ forecastData, locationData }) => {
 
   useEffect(() => {}, [])
   return (
-    <>
-      <div className='title'>
-        {locationData.length !== 0 && forecastData.length !== 0 ? (
-          <>
-            <h1>
-              {locationData.name}, {locationData.country}
-            </h1>
-            <h1>
-              {Moment(locationData.localtime.substring(0, 10)).format(
-                'YYYY/MM/DD'
-              )}
-            </h1>
-            <h1>{getDayfromDate()}</h1>
-            <img src={getimg()} alt='condition' />
-            <h1>{forecastData[0].day.condition.text}</h1>
-            <h1>{`${forecastData[0].day.avgtemp_c}C`}</h1>
-          </>
-        ) : null}
+    <div className='main'>
+      <div className='main_items'>
+        <div className='title_card'>
+          {locationData.length !== 0 && forecastData.length !== 0 ? (
+            <>
+              <p>
+                {locationData.name}, {locationData.country}
+              </p>
+              <img src={getimg()} alt='condition' />
+              <p>{forecastData[0].day.condition.text}</p>
+
+              <h1>
+                {`${forecastData[0].day.avgtemp_c}`}
+                <span>&deg;</span>C
+              </h1>
+              <h1>{getDayfromDate()}</h1>
+              <h1>
+                {Moment(locationData.localtime.substring(0, 10)).format(
+                  'YYYY/MM/DD'
+                )}
+              </h1>
+            </>
+          ) : null}
+        </div>
+        {/* <div className='hour'>
+          {locationData.length !== 0 && forecastData.length !== 0 ? (
+            <>
+              {forecastData[0].hour.map((item, id) => (
+                <div key={id}>
+                  <h1>{getDayfromDateCard(item.time)}</h1>
+                  <img src={`https:${item.condition.icon}`} alt='condition' />
+                  <h1>{`${item.temp_c}C`}</h1>
+                </div>
+              ))}
+            </>
+          ) : null}
+        </div> */}
       </div>
-      <div className='hour'>
-        {locationData.length !== 0 && forecastData.length !== 0 ? (
-          <>
-            {forecastData[0].hour.map((item, id) => (
-              <div key={id}>
-                <h1>{getDayfromDateCard(item.time)}</h1>
-                <img src={`https:${item.condition.icon}`} alt='condition' />
-                <h1>{`${item.temp_c}C`}</h1>
-              </div>
-            ))}
-          </>
-        ) : null}
-      </div>
-    </>
+    </div>
   )
 }
 

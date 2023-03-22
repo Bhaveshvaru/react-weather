@@ -1,0 +1,51 @@
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main_items {
+  background-color: aqua;
+  width: 35%;
+  border-radius: 2rem;
+  height: 100vh;
+}
+
+.title_card {
+  margin-top: 3rem;
+  margin-left: 1rem;
+  width: 250px;
+  box-shadow: 0 15px 25px rgba(129, 124, 124, 0.2);
+  height: 300px;
+  border-radius: 1rem;
+  backdrop-filter: blur(14px);
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 10px;
+  text-align: center;
+}
+
+.title_card img {
+  width: 6rem;
+  height: auto;
+}
+.title_card p:nth-child(1) {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.title_card :nth-child(3) {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+.title_card :nth-child(5) {
+  margin-top: 0.2rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.title_card :nth-child(6) {
+  margin-top: 0.2rem;
+
+  font-size: 1.1rem;
+  font-weight: 500;
+}
