@@ -5,10 +5,13 @@
 }
 
 .main_items {
-  background-color: aqua;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   width: 35%;
   border-radius: 2rem;
   height: 100vh;
+
 }
 
 .title_card {
@@ -18,7 +21,7 @@
   box-shadow: 0 15px 25px rgba(129, 124, 124, 0.2);
   height: 300px;
   border-radius: 1rem;
-  backdrop-filter: blur(14px);
+  backdrop-filter: blur(3px);
   background-color: rgba(255, 255, 255, 0.2);
   padding: 10px;
   text-align: center;
@@ -50,9 +53,10 @@
 }
 
 .hour_row {
+  margin-top: 2rem;
   box-shadow: 0 15px 25px rgba(129, 124, 124, 0.2);
   border-radius: 1rem;
-  backdrop-filter: blur(14px);
+  backdrop-filter: blur(3px);
   background-color: rgba(255, 255, 255, 0.2);
   padding: 15px;
   width: 150px;

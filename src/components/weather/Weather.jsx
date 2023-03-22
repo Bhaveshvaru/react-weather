@@ -3,7 +3,8 @@ import AliceCarousel from 'react-alice-carousel'
 import 'react-alice-carousel/lib/alice-carousel.css'
 import './weather.css'
 import Moment from 'moment'
-const Weather = ({ forecastData, locationData }) => {
+const Weather = ({ image, forecastData, locationData }) => {
+  console.log(image)
   const getimg = () => {
     let img = forecastData[0].day.condition.icon.substring(
       2,
@@ -53,7 +54,7 @@ const Weather = ({ forecastData, locationData }) => {
   useEffect(() => {}, [])
   return (
     <div className='main'>
-      <div className='main_items'>
+      <div className='main_items' style={{ backgroundImage: `url(${image})` }}>
         <div className='title_card'>
           {locationData.length !== 0 && forecastData.length !== 0 ? (
             <>

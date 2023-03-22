@@ -12,10 +12,19 @@ const Search = () => {
   const [location, setLocation] = useState([])
   const [forecast, setForecast] = useState([])
   const [loader, setLoader] = useState(false)
+  const [image, setImage] = useState('')
 
   // search handler function
   const searchHandler = () => {
     setLoader(true)
+    axios
+      .get(
+        `https://api.unsplash.com/search/photos?query=${searchField}&client_id=${process.env.REACT_APP_UNSPLASH_ACCESSKEY}`
+      )
+      .then((res) => {
+        setImage(res.data.results[0].urls.regular)
+      })
+
     const options = {
       method: 'GET',
       url: 'https://weatherapi-com.p.rapidapi.com/history.json',
@@ -57,7 +66,11 @@ const Search = () => {
       {loader ? (
         <h1>Loading</h1>
       ) : location.length !== 0 ? (
-        <Weather forecastData={forecast} locationData={location} />
+        <Weather
+          image={image}
+          forecastData={forecast}
+          locationData={location}
+        />
       ) : (
         <h1>Search Country or city </h1>
       )}
