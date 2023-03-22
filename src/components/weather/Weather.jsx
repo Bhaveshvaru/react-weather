@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react'
+import AliceCarousel from 'react-alice-carousel'
+import 'react-alice-carousel/lib/alice-carousel.css'
 import './weather.css'
 import Moment from 'moment'
 const Weather = ({ forecastData, locationData }) => {
@@ -29,6 +31,24 @@ const Weather = ({ forecastData, locationData }) => {
     let formatted = Moment(time, 'HH:mm').format('hh:mm A')
     return formatted
   }
+  const responsive = {
+    0: { items: 1 },
+    568: { items: 2 },
+    1024: { items: 3 },
+  }
+
+  const items = forecastData[0].hour.map((item, id) => (
+    <div key={id}>
+      <div className='hour_row'>
+        <h1 className='row_title'>{getDayfromDateCard(item.time)}</h1>
+        <img src={`https:${item.condition.icon}`} alt='condition' />
+        <h1>
+          {`${item.temp_c}`}
+          <span>&deg;</span>C
+        </h1>
+      </div>
+    </div>
+  ))
 
   useEffect(() => {}, [])
   return (
@@ -56,19 +76,20 @@ const Weather = ({ forecastData, locationData }) => {
             </>
           ) : null}
         </div>
-        {/* <div className='hour'>
+        <div className='hour_card'>
           {locationData.length !== 0 && forecastData.length !== 0 ? (
             <>
-              {forecastData[0].hour.map((item, id) => (
-                <div key={id}>
-                  <h1>{getDayfromDateCard(item.time)}</h1>
-                  <img src={`https:${item.condition.icon}`} alt='condition' />
-                  <h1>{`${item.temp_c}C`}</h1>
-                </div>
-              ))}
+              <AliceCarousel
+                disableButtonsControls
+                disableDotsControls
+                disableSlideInfo
+                mouseTracking
+                items={items}
+                responsive={responsive}
+              />
             </>
           ) : null}
-        </div> */}
+        </div>
       </div>
     </div>
   )
