@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import { Blocks } from 'react-loader-spinner'
 
 const Search = () => {
-  const inputRef = useRef()
+  const inputref = useRef(null)
   const date = new Date()
   const d = date.toISOString().substring(0, 10)
   const [searchField, setSearchField] = useState('Singapore')
@@ -67,12 +67,13 @@ const Search = () => {
           setSearchField('')
         }
       })
+    inputref.current.focus()
   }
 
   const keyHandler = (e) => {
     if (e.key === 'Enter') {
+      inputref.current.focus()
       searchHandler()
-      inputRef.current.blur()
     }
   }
 
@@ -89,9 +90,8 @@ const Search = () => {
           value={searchField}
           onChange={(e) => setSearchField(e.target.value)}
           onKeyPress={(e) => keyHandler(e)}
-          ref={inputRef}
         />
-        <SearchIcon className='icon' onClick={searchHandler} />
+        <SearchIcon ref={inputref} className='icon' onClick={searchHandler} />
         <ToastContainer />
       </div>
       {loader ? (
@@ -111,13 +111,7 @@ const Search = () => {
           forecastData={forecast}
           locationData={location}
         />
-      ) : (
-        <img
-          className='img_back'
-          src='https://images.unsplash.com/photo-1561484930-998b6a7b22e8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80'
-          alt='wallpaper'
-        />
-      )}
+      ) : null}
     </>
   )
 }
