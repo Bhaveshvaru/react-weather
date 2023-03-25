@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import AliceCarousel from 'react-alice-carousel'
 import 'react-alice-carousel/lib/alice-carousel.css'
 import './weather.css'
 import Moment from 'moment'
 const Weather = ({ image, forecastData, locationData }) => {
+  const focusRef = useRef(null)
   const getimg = () => {
     let img = forecastData[0].day.condition.icon.substring(
       2,
@@ -54,9 +55,12 @@ const Weather = ({ image, forecastData, locationData }) => {
     </div>
   ))
 
-  useEffect(() => {}, [])
+  useEffect(() => {
+    focusRef.current.scrollIntoView()
+    navigator.virtualKeyboard.hide()
+  }, [])
   return (
-    <div className='main'>
+    <div ref={focusRef} className='main'>
       <div className='main_items' style={{ backgroundImage: `url(${image})` }}>
         <div className='title_card'>
           {locationData.length !== 0 && forecastData.length !== 0 ? (

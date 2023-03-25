@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import SearchIcon from '@mui/icons-material/Search'
 import { TextField } from '@mui/material'
 import './search.css'
@@ -9,7 +9,6 @@ import 'react-toastify/dist/ReactToastify.css'
 import { Blocks } from 'react-loader-spinner'
 
 const Search = () => {
-  const inputref = useRef(null)
   const date = new Date()
   const d = date.toISOString().substring(0, 10)
   const [searchField, setSearchField] = useState('Singapore')
@@ -67,12 +66,10 @@ const Search = () => {
           setSearchField('')
         }
       })
-    inputref.current.focus()
   }
 
   const keyHandler = (e) => {
     if (e.key === 'Enter') {
-      inputref.current.focus()
       searchHandler()
     }
   }
@@ -91,7 +88,7 @@ const Search = () => {
           onChange={(e) => setSearchField(e.target.value)}
           onKeyPress={(e) => keyHandler(e)}
         />
-        <SearchIcon ref={inputref} className='icon' onClick={searchHandler} />
+        <SearchIcon className='icon' onClick={searchHandler} />
         <ToastContainer />
       </div>
       {loader ? (
@@ -110,6 +107,7 @@ const Search = () => {
           image={image}
           forecastData={forecast}
           locationData={location}
+        
         />
       ) : null}
     </>
