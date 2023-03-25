@@ -11,7 +11,7 @@ import { Blocks } from 'react-loader-spinner'
 const Search = () => {
   const date = new Date()
   const d = date.toISOString().substring(0, 10)
-  const [searchField, setSearchField] = useState('')
+  const [searchField, setSearchField] = useState('Singapore')
   const [location, setLocation] = useState([])
   const [forecast, setForecast] = useState([])
   const [loader, setLoader] = useState(false)
@@ -68,7 +68,15 @@ const Search = () => {
       })
   }
 
-  useEffect(() => {}, [])
+  const keyHandler = (e) => {
+    if (e.key === 'Enter') {
+      searchHandler()
+    }
+  }
+
+  useEffect(() => {
+    searchHandler()
+  }, [])
   return (
     <>
       <div className='search'>
@@ -78,6 +86,7 @@ const Search = () => {
           variant='outlined'
           value={searchField}
           onChange={(e) => setSearchField(e.target.value)}
+          onKeyPress={(e) => keyHandler(e)}
         />
         <SearchIcon className='icon' onClick={searchHandler} />
         <ToastContainer />
