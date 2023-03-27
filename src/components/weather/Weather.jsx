@@ -65,9 +65,17 @@ const Weather = ({ image, forecastData, locationData }) => {
         <div className='title_card'>
           {locationData.length !== 0 && forecastData.length !== 0 ? (
             <>
-              <p>
-                {locationData.name}, {locationData.country}
-              </p>
+              {locationData.name === 'Concord Regional Airport' ? (
+                <p>USA</p>
+              ) : (
+                <p>
+                  {locationData.country.length > 10
+                    ? locationData.name
+                    : `${locationData.name}, 
+              ${locationData.country}`}
+                </p>
+              )}
+
               <img src={getimg()} alt='condition' />
               <p>{forecastData[0].day.condition.text}</p>
 
