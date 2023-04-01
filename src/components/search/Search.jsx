@@ -67,11 +67,9 @@ const Search = () => {
         }
       })
   }
-
-  const keyHandler = (e) => {
-    if (e.key === 'Enter') {
-      searchHandler()
-    }
+  const formSubmitHandler = (e) => {
+    e.preventDefault()
+    searchHandler()
   }
 
   useEffect(() => {
@@ -79,18 +77,23 @@ const Search = () => {
   }, [])
   return (
     <>
-      <div className='search'>
-        <TextField
-          id='outlined-basic'
-          label='Search Country / City'
-          variant='outlined'
-          value={searchField}
-          onChange={(e) => setSearchField(e.target.value)}
-          onKeyPress={(e) => keyHandler(e)}
-        />
-        <SearchIcon className='icon' onClick={searchHandler} />
-        <ToastContainer />
-      </div>
+      <form onSubmit={formSubmitHandler}>
+        <div className='search'>
+          <TextField
+            id='outlined-basic'
+            label='Search Country / City'
+            variant='outlined'
+            value={searchField}
+            onChange={(e) => setSearchField(e.target.value)}
+          />
+          <SearchIcon
+            type='submit'
+            className='icon'
+            onClick={formSubmitHandler}
+          />
+          <ToastContainer />
+        </div>
+      </form>
       {loader ? (
         <div className='loader'>
           <Blocks
@@ -107,7 +110,6 @@ const Search = () => {
           image={image}
           forecastData={forecast}
           locationData={location}
-        
         />
       ) : null}
     </>
